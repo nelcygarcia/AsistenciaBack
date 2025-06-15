@@ -1,6 +1,7 @@
 package com.example.asistencia.repository;
 
 import com.example.asistencia.model.Asistencia;
+import com.example.asistencia.model.Empleado;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,6 +14,8 @@ import org.springframework.data.repository.query.Param;
 public interface AsistenciaRepository extends JpaRepository<Asistencia, Long> {
 	
 	List<Asistencia> findByEmpleadoId(Long empleadoId);
+	
+	void deleteByEmpleado(Empleado empleado);
 	
 	Optional<Asistencia> findTopByEmpleadoIdAndHoraSalidaIsNullAndHoraEntradaBetweenOrderByHoraEntradaDesc(
 		    Long empleadoId,

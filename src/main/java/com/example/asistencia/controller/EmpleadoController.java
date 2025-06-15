@@ -1,6 +1,8 @@
 package com.example.asistencia.controller;
 
+import com.example.asistencia.model.Asistencia;
 import com.example.asistencia.model.Empleado;
+import com.example.asistencia.repository.AsistenciaRepository;
 import com.example.asistencia.repository.EmpleadoRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,9 @@ import java.util.Optional;
 public class EmpleadoController {
     @Autowired
     private EmpleadoRepository repository;
+    
+    @Autowired
+    private AsistenciaRepository repositoryAsistencia;
 
     // Obtener todos los empleados
     @GetMapping
@@ -43,9 +48,30 @@ public class EmpleadoController {
     }
 
     // Eliminar un empleado
+   // @DeleteMapping("/{id}")
+   // public void delete(@PathVariable Long id) {
+    //    repository.deleteById(id);
+   // }
+    
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        repository.deleteById(id);
+        Optional<Empleado> empleadoOpt = repository.findById(id);
+
+        if (empleadoOpt.isPresent()) {
+            Empleado empleado = empleadoOpt.get();
+
+            // ✅ NUEVO: Eliminar asistencias manualmente
+            List<Asistencia> asistencias = repositoryAsistencia.findByEmpleadoId(empleado.getId());
+            for (Asistencia asistencia : asistencias) {
+            	repositoryAsistencia.delete(asistencia);
+            }
+
+            // Ahora sí puedes borrar el empleado
+            repository.delete(empleado);
+
+        } else {
+            throw new RuntimeException("Empleado no encontrado");
+        }
     }
     
     @DeleteMapping
