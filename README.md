@@ -1,7 +1,5 @@
-# ⚙️ AsistenciaBack
-
 <p align="center">
-  <img src="./banner-asistenciaback.png" alt="Banner AsistenciaBack" width="80%" />
+  <img src="./banner-asistenciaback.png" alt="Banner AsistenciaBack" width="30%" />
 </p>
 
 ---
