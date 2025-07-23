@@ -45,22 +45,8 @@ Las contribuciones son bienvenidas. Abre issues o pull requests para sugerir mej
 
 ---
 
-## 🙏 Agradecimientos
-Este backend fue desarrollado como parte del bootcamp de 4Geeks Academy, con el apoyo de los mentores y la comunidad.
-
----
-
-## 📄 Licencia
-MIT License - consulta el archivo LICENSE para más detalles.
 
 ¡Gracias por visitar y colaborar en este proyecto! 🚀
-
-
-
-
-
-
-
 
 
 ## 💻 Instalación
